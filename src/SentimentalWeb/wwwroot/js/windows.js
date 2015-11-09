@@ -68,13 +68,13 @@ function SendTile(tileText) {
 function SendPopup(toastText)
 {
     // Create the message dialog and set its content
-    var msg = new Windows.UI.Popups.MessageDialog(toastText, "Result");
+    var msg = new Windows.UI.Popups.MessageDialog(toastText);
 
     // Add commands
     msg.commands.append(new Windows.UI.Popups.UICommand("OK"));
 
     // Set default command
-    msg.defaultConnadnIndex = 0;
+    msg.defaultCommandIndex = 0;
 
     // Show the message dialog
     msg.showAsync();
