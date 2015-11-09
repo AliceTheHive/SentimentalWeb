@@ -22,7 +22,7 @@
 {
     <div class="row" id="results" role="document">
         <div class="col-md-12">
-            <p>The sentiment (higher = more positve)...</p>
+            <p>The sentiment (higher = more positive)...</p>
             <div id="sentiment-progress" class="progress round">
                 <div class="progress-bar meter" role="progressbar" aria-valuenow="@Model.SentimentScore" aria-valuemin="0" aria-valuemax="100" style="width: @Formatting.FormatAsPercentage(Model.SentimentScore)%; min-width: 2em;">
                     <span id="sentiment-score">@Formatting.FormatAsPercentage(Model.SentimentScore)%</span>
@@ -44,11 +44,10 @@
             </p>
         </div>
     </div>
-}
 
-@*Show a native Windows message dialog via Windows api*@
-<script src="/js/windows.js" type="text/javascript"></script>
-<script type="text/javascript">
+    @*Show a native Windows message dialog via Windows api*@
+    <script src="/js/windows.js" type="text/javascript"></script>
+    <script type="text/javascript">
     if (typeof Windows != 'undefined') {
         //send toast
         SendToast("The sentiment score was @Formatting.FormatAsPercentage(Model.SentimentScore)%");
@@ -57,4 +56,5 @@
         SendTile("The sentiment score was @Formatting.FormatAsPercentage(Model.SentimentScore)%");
         SendTile("The key phrases were @(Model.KeyPhrasesAsString)");
     }
-</script>
+    </script>
+}
