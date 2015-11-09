@@ -3,28 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using SentimentalWeb.Service;
+using SentimentalWeb.Models;
 
 namespace SentimentalWeb.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string inputText = "")
         {
-            return View();
-        }
+            if (!string.IsNullOrEmpty(inputText))
+            {
+                var sentimentScore = await TextAnalyticsService.GetSentimentScore(inputText);
+                var keyPhrases = await TextAnalyticsService.GetKeyPhrases(inputText);
+                var keyPhrasesAsString = string.Empty;
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
+                foreach (var keyPhrase in keyPhrases)
+                {
+                    keyPhrasesAsString += keyPhrase + " ";
+                }
 
-            return View();
-        }
+                var viewModel = new ResultViewModel()
+                {
+                    SentimentScore = sentimentScore,
+                    KeyPhrases = keyPhrases,
+                    OriginalText = inputText,
+                    KeyPhrasesAsString = keyPhrasesAsString
+                };
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+                return View(viewModel);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult Error()
