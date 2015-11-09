@@ -64,3 +64,18 @@ function SendTile(tileText) {
     tileUpdater.enableNotificationQueue(true);
     tileUpdater.update(tileNotification);
 }
+
+function SendPopup(toastText)
+{
+    // Create the message dialog and set its content
+    var msg = new Windows.UI.Popups.MessageDialog(toastText, "Result");
+
+    // Add commands
+    msg.commands.append(new Windows.UI.Popups.UICommand("OK"));
+
+    // Set default command
+    msg.defaultConnadnIndex = 0;
+
+    // Show the message dialog
+    msg.showAsync();
+}

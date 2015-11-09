@@ -55,6 +55,9 @@
         //send tiles
         SendTile("The sentiment score was @Formatting.FormatAsPercentage(Model.SentimentScore)%");
         SendTile("The key phrases were @(Model.KeyPhrasesAsString)");
+
+        //send pop up
+        SendPopup("The sentiment score was @Formatting.FormatAsPercentage(Model.SentimentScore)%");
     }
     </script>
 }
