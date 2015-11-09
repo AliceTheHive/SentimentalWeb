@@ -2,6 +2,7 @@
 /// <reference path="../gulpfile.js" />
 /// <reference path="css/blackout/specimen_files/easytabs.js" />
 /// <reference path="js/site.js" />
+/// <reference path="js/windows.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="lib/bootstrap-touch-carousel/dist/js/bootstrap-touch-carousel.js" />
 /// <reference path="lib/hammer.js/hammer.js" />

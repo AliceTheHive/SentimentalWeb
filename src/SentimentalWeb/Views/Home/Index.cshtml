@@ -45,3 +45,16 @@
         </div>
     </div>
 }
+
+@*Show a native Windows message dialog via Windows api*@
+<script src="/js/windows.js" type="text/javascript"></script>
+<script type="text/javascript">
+    if (typeof Windows != 'undefined') {
+        //send toast
+        SendToast("The sentiment score was @Formatting.FormatAsPercentage(Model.SentimentScore)%");
+
+        //send tiles
+        SendTile("The sentiment score was @Formatting.FormatAsPercentage(Model.SentimentScore)%");
+        SendTile("The key phrases were @(Model.KeyPhrasesAsString)");
+    }
+</script>
