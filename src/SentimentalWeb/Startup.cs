@@ -8,6 +8,7 @@ using Microsoft.Dnx.Runtime;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
+using Microsoft.AspNet.StaticFiles;
 
 namespace SentimentalWeb
 {
@@ -62,7 +63,10 @@ namespace SentimentalWeb
             app.UseIISPlatformHandler();
 
             // Add static files to the request pipeline.
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                ContentTypeProvider = new ContentTypeProvider(),
+            });
 
             // Add MVC to the request pipeline.
             app.UseMvc(routes =>
@@ -74,6 +78,14 @@ namespace SentimentalWeb
                 // Uncomment the following line to add a route for porting Web API 2 controllers.
                 // routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
             });
+        }
+
+        public class ContentTypeProvider : FileExtensionContentTypeProvider
+        {
+            public ContentTypeProvider()
+            {
+                Mappings.Add(".webmanifest", "application/json");
+            }
         }
     }
 }
