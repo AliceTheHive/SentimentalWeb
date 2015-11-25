@@ -30,6 +30,11 @@
         <!-- Custom scripts -->
         <script src="/scripts/site.js"></script>
 
+        <!--Office add in scripts-->
+        @*<script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+        <script src="~/js/app.js"></script>
+        <script src="~/js/officeapp.js"></script>*@
+
     </head>
     <body>
         <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -70,8 +75,6 @@
                 asp-fallback-test="window.Hammer && window.Hammer.Instance">
         </script>
         <script src="~/js/site.js" asp-append-version="true"></script>
-        @*<script src="~/js/app.js"></script>
-        <script src="~/js/officeapp.js"></script>*@
 
         @RenderSection("scripts", required: false)
     </body>
