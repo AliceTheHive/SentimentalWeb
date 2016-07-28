@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace SentimentalWeb
 {
@@ -47,7 +48,11 @@ namespace SentimentalWeb
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
+            // Add static files to the request pipeline.
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                ContentTypeProvider = new ContentTypeProvider(),
+            });
 
             app.UseMvc(routes =>
             {
@@ -55,6 +60,14 @@ namespace SentimentalWeb
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        public class ContentTypeProvider : FileExtensionContentTypeProvider
+        {
+            public ContentTypeProvider()
+            {
+                Mappings.Add(".webmanifest", "application/json");
+            }
         }
     }
 }
