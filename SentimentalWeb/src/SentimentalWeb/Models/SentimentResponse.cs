@@ -7,6 +7,14 @@ namespace SentimentalWeb.Models
 {
     public class SentimentResponse
     {
-        public double Score { get; set; }
+        public List<SentimentResponseDocument> documents { get; set; }
+        public List<object> errors { get; set; }
     }
+
+    public class SentimentResponseDocument
+    {
+        public double score { get; set; }
+        public string id { get; set; }
+    }
+
 }

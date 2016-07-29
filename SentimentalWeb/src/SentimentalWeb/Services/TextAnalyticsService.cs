@@ -36,7 +36,7 @@ namespace SentimentalWeb.Services
             if (!string.IsNullOrEmpty(data))
             {
                 var sentiment = JsonConvert.DeserializeObject<SentimentResponse>(data);
-                return sentiment.Score;
+                return sentiment.documents.FirstOrDefault().score;
             }
             else
             {
@@ -62,7 +62,7 @@ namespace SentimentalWeb.Services
             if (!string.IsNullOrEmpty(data))
             {
                 var keyPhrasesResponse = JsonConvert.DeserializeObject<KeyPhrasesResponse>(data);
-                return keyPhrasesResponse.KeyPhrases;
+                return keyPhrasesResponse.documents.FirstOrDefault().keyPhrases;
             }
             else
             {
@@ -86,7 +86,7 @@ namespace SentimentalWeb.Services
                 var documents = new List<Document>();
                 documents.Add(new Document()
                 {
-                    id = new Guid().ToString(),
+                    id = Guid.NewGuid().ToString(),
                     language = "en",
                     text = inputText
                 });
