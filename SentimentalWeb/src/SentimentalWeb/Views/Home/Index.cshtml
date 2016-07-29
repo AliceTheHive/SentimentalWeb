@@ -20,27 +20,18 @@
 {
     <div class="row" id="results" role="document">
         <div class="col-md-12">
+            <p>You analysed <i><strong>@Model.OriginalText</strong></i></p>
             <p>The sentiment (higher = more positive)...</p>
             <div id="sentiment-progress" class="progress round">
                 <div class="progress-bar meter" role="progressbar" aria-valuenow="@Model.SentimentScore" aria-valuemin="0" aria-valuemax="100" style="width: @Model.SentimentScore%; min-width: 2em;">
                     <span id="sentiment-score">@Model.SentimentScore%</span>
                 </div>
             </div>
-            <p>Key phrases are highlighted below ...</p>
+            <p>The key phrases were ...</p>
             <p id="key-phrases">
-                @foreach (var word in Model.OriginalText.Split(' '))
-                {
-                    if (Model.KeyPhrases.Count() > 0)
-                    {
-                        if (Model.KeyPhrases.Contains(word))
-                        {
-                            <span class="highlight">@word</span><span> </span>
-                        }
-                        else
-                        {
-                            <span>@word </span>
-                        }
-                    }
+                @foreach (var keyPhrase in Model.KeyPhrases)
+                { 
+                    <span>@keyPhrase </span>
                 }
             </p>
         </div>
@@ -59,7 +50,7 @@
 
                 //send tiles
                 SendTile("The sentiment score was @Model.SentimentScore%");
-                SendTile("The key phrases were @Model.KeyPhrasesAsString");
+                SendTile("The key phrases were @String.Join(" ", Model.KeyPhrases)");
 
                 //send pop up
                 SendPopup("The sentiment score was @Model.SentimentScore%");

@@ -16,19 +16,15 @@ namespace SentimentalWeb.Controllers
             {
                 var sentimentScore = await TextAnalyticsService.GetSentimentScore(inputText);
                 var keyPhrases = await TextAnalyticsService.GetKeyPhrases(inputText);
-                var keyPhrasesAsString = string.Empty;
 
-                foreach (var keyPhrase in keyPhrases)
-                {
-                    keyPhrasesAsString += keyPhrase + " ";
-                }
+                //Cast sentiment score as a percentage
+                sentimentScore = Math.Round((sentimentScore * 100), 0);
 
                 var viewModel = new ResultViewModel()
                 {
                     SentimentScore = sentimentScore,
                     KeyPhrases = keyPhrases,
                     OriginalText = inputText,
-                    KeyPhrasesAsString = keyPhrasesAsString
                 };
 
                 return View(viewModel);

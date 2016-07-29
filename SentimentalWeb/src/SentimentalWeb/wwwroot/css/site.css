@@ -107,7 +107,12 @@ button:focus {
 
 .progress {
     height: 40px;
+    line-height: 40px;
     background-color: darkgray;
+}
+
+.progress-bar {
+    line-height: 40px;
 }
 
 .meter {
